@@ -1,73 +1,73 @@
-# CForge — İndirme
+# CForge — Downloads
 
-**Türkçe** · [English](README.en.md)
+**English** · [Türkçe](README.tr.md)
 
-CForge, C dersi için gereken ortamı bilgisayarına tek işlemde kurar: VS Code,
-C derleyicisi, gerekli eklentiler ve çalışmaya hazır bir örnek proje. Yönetici
-yetkisi gerekmez.
+CForge sets up everything your C course needs in a single operation: VS Code, a
+C compiler, the required extensions, and a sample project ready to run. No
+administrator rights needed.
 
-**[→ Son sürümü indir](https://github.com/mtvrkan/CForge-releases/releases/latest)**
+**[→ Download the latest release](https://github.com/mtvrkan/CForge-releases/releases/latest)**
 
-Tanıtım sayfası: [cforge.mtvrkan.com](https://cforge.mtvrkan.com)
+Product page: [cforge.mtvrkan.com](https://cforge.mtvrkan.com)
 
-![CForge — birinci sınıf için C geliştirme ortamı](og-cover.png)
+![CForge — a C development environment for first-year students](og-cover-en.png)
 
 ---
 
-## Hangisini indireceğim?
+## Which one do I download?
 
-| Sistemin | Dosya |
+| Your system | File |
 | --- | --- |
-| Windows 10/11 | `CForge-windows-online-<sürüm>.exe` |
-| Windows, internet zayıf veya kısıtlıysa | `CForge-windows-offline-<sürüm>.exe` |
-| Mac (Apple Silicon — M1, M2, M3, M4) | `CForge-macos-arm64-<sürüm>.zip` |
-| Mac (Intel) | `CForge-macos-x64-<sürüm>.zip` |
-| Linux (x64) | `CForge-linux-x64-<sürüm>.tar.gz` |
+| Windows 10/11 | `CForge-windows-online-<version>.exe` |
+| Windows, on a weak or restricted connection | `CForge-windows-offline-<version>.exe` |
+| Mac (Apple Silicon — M1, M2, M3, M4) | `CForge-macos-arm64-<version>.zip` |
+| Mac (Intel) | `CForge-macos-x64-<version>.zip` |
+| Linux (x64) | `CForge-linux-x64-<version>.tar.gz` |
 
-**Hangi Mac'e sahip olduğunu bilmiyorsan:**  → Bu Mac Hakkında → "Yonga" satırında
-*Apple* yazıyorsa arm64, *Intel* yazıyorsa x64.
+**Not sure which Mac you have:**  → About This Mac → if the *Chip* line says
+*Apple*, take arm64; if it says *Intel*, take x64.
 
-**online / offline farkı:** online sürüm VS Code'u ve derleyiciyi kurulum
-sırasında indirir (küçük dosya, internet gerekir). offline sürüm her şeyi
-içinde taşır (büyük dosya, kurulum sırasında internet gerekmez) — kampüs ağı
-indirmeleri engelliyorsa bunu kullan.
+**online vs offline:** the online build downloads VS Code and the compiler
+during setup (small file, needs a connection). The offline build carries
+everything inside it (large file, needs no connection during setup) — use it if
+your campus network blocks downloads.
 
-## Nasıl çalıştırılır
+## How to run it
 
-**Windows** — indirdiğin `.exe`'yi çalıştır, kurulacak bir şey yok.
-İlk açılışta birkaç saniye bekleyebilir.
-**"Windows kişisel bilgisayarınızı korudu" uyarısı çıkarsa** bu normaldir: CForge
-imzalı bir uygulama değil, Windows da tanımadığı her programa aynı uyarıyı verir.
-Mavi pencerede **Daha fazla bilgi** → **Yine de çalıştır**.
+**Windows** — run the `.exe` you downloaded; there is nothing to install.
+It may take a few seconds to open the first time.
+**If you see "Windows protected your PC"**, that is expected: CForge is not a
+signed application, and Windows shows this for every program it does not
+recognise. Click **More info** → **Run anyway**.
 
-**macOS** — `.zip`'i çıkar, `CForge.app`'i **sağ tık → Aç** ile başlat (ilk
-açılışta çift tıklama macOS tarafından engellenir).
+**macOS** — extract the `.zip`, then **right-click → Open** on `CForge.app`
+(macOS blocks a double-click on first launch).
 
-**Linux** — arşivi çıkar ve çalıştır:
+**Linux** — extract and run:
 
 ```bash
 tar -xzf CForge-linux-x64-*.tar.gz
 ./CForge/CForge
 ```
 
-## Kurulum bittiğinde
+## When setup finishes
 
-VS Code açılır ve `ilkprojem.c` hazır bekler. **F5** programı derler ve
-çalıştırır. Kurulum, kendi kurduğu ortamı gerçekten derleyip çalıştırarak
-doğrular — yani "tamamlandı" yazıyorsa çalışıyor demektir.
+VS Code opens with `ilkprojem.c` ready. **F5** compiles and runs it. Setup
+verifies the environment it just built by compiling and running a program in it
+— so if it says it finished, it works.
 
-Proje klasörün: `Belgeler/algoritma-1` (macOS ve Linux'ta `Documents`).
+Your project folder: `Documents/algoritma-1`.
 
-## Bir sorun çıkarsa
+## If something goes wrong
 
-CForge hata durumunda ne olduğunu düz Türkçe anlatan bir rapor üretir ve
-kopyalanabilir hâlde gösterir. O raporu dersin sorumlusuna ilet — antivirüs
-silmesi, yarıda kalan kurulum, eksik derleyici ve indirmeyi engelleyen ağ
-durumlarını ayrı ayrı tanır.
+CForge produces a report that explains in plain language what happened, ready to
+copy. Send it to your instructor — it tells apart an antivirus deletion, a
+cancelled installer, an incomplete toolchain and a network that blocks
+downloads.
 
-Yeniden denemek güvenlidir: CForge kaldığı yerden devam eder, kurulu olanı
-tekrar kurmaz.
+Trying again is safe: CForge continues where it left off and does not reinstall
+what is already there.
 
 ---
 
-Bu depo yalnızca indirme çıktılarını ve tanıtım sayfasını barındırır.
+This repository holds the download artefacts and the product page only.
