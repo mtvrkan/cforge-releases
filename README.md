@@ -18,7 +18,7 @@ Tanıtım sayfası: [cforge.mtvrkan.com](https://cforge.mtvrkan.com)
 
 | Sistemin | Dosya |
 | --- | --- |
-| Windows 10/11 | `CForge-windows-online-<sürüm>.zip` |
+| Windows 10/11 | `CForge-windows-online-<sürüm>.exe` |
 | Windows, internet zayıf veya kısıtlıysa | `CForge-windows-offline-<sürüm>.exe` |
 | Mac (Apple Silicon — M1, M2, M3, M4) | `CForge-macos-arm64-<sürüm>.zip` |
 | Mac (Intel) | `CForge-macos-x64-<sürüm>.zip` |
@@ -34,8 +34,8 @@ indirmeleri engelliyorsa bunu kullan.
 
 ## Nasıl çalıştırılır
 
-**Windows** — `.zip`'i çıkar, içindeki `CForge.exe`'yi çalıştır. offline
-sürümde tek bir `.exe` var, doğrudan çalıştır.
+**Windows** — indirdiğin `.exe`'yi çalıştır, kurulacak bir şey yok.
+İlk açılışta birkaç saniye bekleyebilir.
 Windows "bilinmeyen yayıncı" uyarısı verirse: *Ek bilgi* → *Yine de çalıştır*.
 
 **macOS** — `.zip`'i çıkar, `CForge.app`'i **sağ tık → Aç** ile başlat (ilk

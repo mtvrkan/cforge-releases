@@ -18,7 +18,7 @@ Product page: [cforge.mtvrkan.com](https://cforge.mtvrkan.com)
 
 | Your system | File |
 | --- | --- |
-| Windows 10/11 | `CForge-windows-online-<version>.zip` |
+| Windows 10/11 | `CForge-windows-online-<version>.exe` |
 | Windows, on a weak or restricted connection | `CForge-windows-offline-<version>.exe` |
 | Mac (Apple Silicon — M1, M2, M3, M4) | `CForge-macos-arm64-<version>.zip` |
 | Mac (Intel) | `CForge-macos-x64-<version>.zip` |
@@ -34,8 +34,8 @@ your campus network blocks downloads.
 
 ## How to run it
 
-**Windows** — extract the `.zip` and run `CForge.exe` inside it. The offline
-build is a single `.exe`; run it directly.
+**Windows** — run the `.exe` you downloaded; there is nothing to install.
+It may take a few seconds to open the first time.
 If Windows warns about an unknown publisher: *More info* → *Run anyway*.
 
 **macOS** — extract the `.zip`, then **right-click → Open** on `CForge.app`
