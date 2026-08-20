@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title data-tr="CForge — C geliştirme ortamı kurulum aracı" data-en="CForge — C development environment setup">CForge — C geliştirme ortamı kurulum aracı</title>
+<meta name="description" content="CForge, birinci sınıf öğrencileri için VS Code ve C derleyicisini tek işlemde kurar, örnek projeyi oluşturur ve kurulumu derleyip çalıştırarak doğrular. Windows, macOS ve Linux." data-tr="CForge, birinci sınıf öğrencileri için VS Code ve C derleyicisini tek işlemde kurar, örnek projeyi oluşturur ve kurulumu derleyip çalıştırarak doğrular. Windows, macOS ve Linux." data-en="CForge installs VS Code and a C compiler for first-year students in a single operation, creates the sample project, and verifies the result by compiling and running it. Windows, macOS and Linux.">
+<meta name="author" content="Mehmet Türkan">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#06080b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fa" media="(prefers-color-scheme: light)">
+
+<link rel="canonical" href="https://cforge.mtvrkan.com/">
+<link rel="alternate" hreflang="tr" href="https://cforge.mtvrkan.com/">
+<link rel="alternate" hreflang="en" href="https://cforge.mtvrkan.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://cforge.mtvrkan.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CForge">
+<meta property="og:title" content="CForge — C geliştirme ortamı kurulum aracı" data-tr="CForge — C geliştirme ortamı kurulum aracı" data-en="CForge — C development environment setup">
+<meta property="og:description" content="VS Code ve C derleyicisini kurar, örnek projeyi oluşturur ve kurulumu derleyip çalıştırarak doğrular. Yönetici yetkisi gerekmez." data-tr="VS Code ve C derleyicisini kurar, örnek projeyi oluşturur ve kurulumu derleyip çalıştırarak doğrular. Yönetici yetkisi gerekmez." data-en="Installs VS Code and a C compiler, creates the sample project, and verifies the result by compiling and running it. No administrator rights.">
+<meta property="og:url" content="https://cforge.mtvrkan.com/">
+<meta property="og:image" content="https://cforge.mtvrkan.com/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CForge — birinci sınıf için C geliştirme ortamı" data-tr="CForge — birinci sınıf için C geliştirme ortamı" data-en="CForge — a C development environment for first-year students">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CForge — C geliştirme ortamı kurulum aracı" data-tr="CForge — C geliştirme ortamı kurulum aracı" data-en="CForge — C development environment setup">
+<meta name="twitter:description" content="VS Code ve C derleyicisini kurar, örnek projeyi oluşturur ve kurulumu derleyip çalıştırarak doğrular." data-tr="VS Code ve C derleyicisini kurar, örnek projeyi oluşturur ve kurulumu derleyip çalıştırarak doğrular." data-en="Installs VS Code and a C compiler, creates the sample project, and verifies the result by compiling and running it.">
+<meta name="twitter:image" content="https://cforge.mtvrkan.com/og-cover.png">
+<meta name="twitter:image:alt" content="CForge — birinci sınıf için C geliştirme ortamı" data-tr="CForge — birinci sınıf için C geliştirme ortamı" data-en="CForge — a C development environment for first-year students">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'sha256-6eIFXnkD0WwsCIsiCokMasBQk/RuVoG5byY3nHGpNgo=' https://fonts.googleapis.com; script-src 'sha256-5qquwogv68d0t3Qa+XNGM8zhyAn8r6jMqif03jOEuoo='; connect-src 'none'; manifest-src 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23081527'/%3E%3Ctext x='16' y='23' font-family='system-ui,sans-serif' font-size='20' font-weight='800' fill='%235bd8f2' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&family=JetBrains+Mono:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CForge",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "Installer",
+  "operatingSystem": "Windows 10, Windows 11, macOS, Linux",
+  "url": "https://cforge.mtvrkan.com/",
+  "downloadUrl": "https://github.com/mtvrkan/cforge-releases/releases",
+  "softwareVersion": "0.1.0",
+  "inLanguage": ["tr", "en"],
+  "description": "VS Code ve C derleyicisini birinci sınıf öğrencileri için tek tıkla kuran, kurulumu gerçekten derleyip çalıştırarak doğrulayan açık kurulum aracı.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+  "author": { "@type": "Person", "name": "Mehmet Türkan", "url": "https://mtvrkan.com" }
+}
+</script>
+
+<style>
+
+:root {
+  --void:        #06080b;
+  --deep:        #090c11;
+  --ink:         #f4f6fa;
+  --ink-soft:    #d6dbe4;  --ink-dim:     #a9b2c4;
+  --ink-faint:   #8b95ab;
+
+  --beam:        #5bd8f2;  --beam-deep:   #1f9fd0;  --spark:       #2f7fe8;  --ember:       #f0743f;  --good:        #59e0a8;  --heart:       #e2495f;
+  --surface:     #0c1016;
+  --surface-lit: #11161e;
+  --line:        rgba(150, 172, 200, 0.14);
+  --line-lit:    rgba(150, 172, 200, 0.27);
+
+  --radius:      16px;
+  --radius-xs:   8px;
+  --radius-pill: 999px;
+  --shell:       1200px;
+  --bar:         3.9rem;  --ease:        cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --void:      #f4f6fa;
+    --deep:      #e9edf4;
+    --ink:       #0a0f18;
+    --ink-soft:  #232c3a;
+    --ink-dim:   #3f4a5c;
+    --ink-faint: #566173;
+    --beam:      #0a6274;
+    --beam-deep: #0b7b94;
+    --spark:     #1462c0;
+    --ember:     #9c4520;
+    --good:      #0f7047;
+    --heart:     #c0233b;
+    --surface:     #ffffff;
+    --surface-lit: #f6f9fc;
+    --line:        rgba(10, 25, 45, 0.12);
+    --line-lit:    rgba(10, 25, 45, 0.26);
+    color-scheme: light;
+  }
+}
+
+:root[data-theme="light"] {
+  --void:      #f4f6fa;
+  --deep:      #e9edf4;
+  --ink:       #0a0f18;
+  --ink-soft:  #232c3a;
+  --ink-dim:   #3f4a5c;
+  --ink-faint: #566173;
+  --beam:      #0a6274;
+  --beam-deep: #0b7b94;
+  --spark:     #1462c0;
+  --ember:     #9c4520;
+  --good:      #0f7047;
+  --heart:     #c0233b;
+  --surface:     #ffffff;
+  --surface-lit: #f6f9fc;
+  --line:        rgba(10, 25, 45, 0.12);
+  --line-lit:    rgba(10, 25, 45, 0.26);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--void);
+  color: var(--ink);
+  font-family: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.ground {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: var(--void);
+}
+.ground::before,
+.ground::after {
+  content: "";
+  position: absolute;
+  inset: -32vmax;
+  will-change: transform;
+}
+.ground::before {
+  background:
+    radial-gradient(78vmax 58vmax at 72% 14%, color-mix(in srgb, var(--spark) 14%, transparent), transparent 72%),
+    radial-gradient(64vmax 50vmax at 18% 72%, color-mix(in srgb, var(--beam) 7%, transparent), transparent 70%);
+  animation: tide-a 46s ease-in-out infinite alternate;
+}
+.ground::after {
+  background:
+    radial-gradient(70vmax 54vmax at 34% 18%, color-mix(in srgb, var(--beam-deep) 10%, transparent), transparent 74%),
+    radial-gradient(86vmax 46vmax at 62% 96%, color-mix(in srgb, var(--spark) 8%, transparent), transparent 76%);
+  animation: tide-b 34s ease-in-out infinite alternate;
+}
+@keyframes tide-a {
+  from { transform: translate3d(-3%, -2%, 0) scale(1.04); }
+  to   { transform: translate3d(3%, 2.5%, 0) scale(1.12); }
+}
+@keyframes tide-b {
+  from { transform: translate3d(2.5%, 2%, 0) scale(1.1); }
+  to   { transform: translate3d(-2%, -2.5%, 0) scale(1.02); }
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(120vmax 90vmax at 50% 26%, transparent 30%, color-mix(in srgb, var(--void) 60%, transparent) 100%),
+    linear-gradient(color-mix(in srgb, var(--void) 44%, transparent), color-mix(in srgb, var(--void) 44%, transparent));
+}
+
+h1, h2 { font-family: Manrope, ui-sans-serif, system-ui, sans-serif; margin: 0; }
+h1 {
+  font-size: clamp(2.05rem, 1.25rem + 2.6vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.028em;
+  max-width: 26ch;
+  color: var(--ink-soft);
+  text-wrap: balance;
+}
+h2 { font-size: 1.04rem; font-weight: 600; letter-spacing: -0.01em; }
+p { margin: 0; }
+code { font-family: "JetBrains Mono", ui-monospace, monospace; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--beam); outline-offset: 3px; border-radius: 8px; }
+
+.lit { color: var(--ink); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin: 0 0 1.1rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--line-lit);
+  animation: draw 0.5s var(--ease) 0.2s both;
+}
+@keyframes draw { from { width: 0; } }
+
+.lede {
+  color: var(--ink-dim);
+  font-size: clamp(1.02rem, 0.98rem + 0.3vw, 1.16rem);
+  max-width: 58ch;
+  margin: 1.2rem 0 0;
+}
+
+.shell {
+  width: min(100% - clamp(1.5rem, 6vw, 5rem), var(--shell));
+  margin-inline: auto;
+}
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(1rem, 3vh, 2.5rem);
+}
+.hero { display: grid; gap: clamp(1.4rem, 4vh, 3rem); }
+.note { color: var(--ink-faint); font-size: 0.88rem; margin-top: 1.15rem; max-width: 54ch; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr); gap: clamp(1.6rem, 3.5vw, 3.4rem); align-items: center; }
+@media (max-width: 950px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.panel {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, var(--line-lit), var(--line) 38%, var(--line) 62%, var(--line-lit));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.12;
+  filter: blur(16px);
+  background: linear-gradient(140deg, var(--beam), var(--spark));
+}
+
+.card {
+  position: relative;
+  padding: 1.35rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background-color: var(--surface);
+  border-radius: var(--radius);
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--line);
+  opacity: 1;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.card::after { content: none; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: clamp(0.9rem, 1.6vw, 1.3rem); margin-top: clamp(1.8rem, 3vw, 2.6rem); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.9rem; }
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-xs);
+  text-decoration: none;
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  font-size: 0.94rem;
+  color: #04121b;
+  background: var(--beam);
+  border: 0;
+  transition: transform 0.2s var(--ease), background 0.2s var(--ease);
+}
+.btn:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--beam) 88%, #ffffff); }
+.btn:active { transform: scale(0.98); }
+.btn svg { width: 1.05rem; height: 1.05rem; }
+.topbar {
+  flex: none;
+  height: var(--bar);
+  display: flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--void) 76%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+.topbar-inner { display: flex; align-items: center; gap: 0.7rem; width: min(100% - clamp(1.5rem, 6vw, 5rem), var(--shell)); margin-inline: auto; }
+.brand { display: flex; align-items: center; gap: 0.7rem; margin-right: auto; }
+.wordmark { position: relative; font-family: Manrope, sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; text-decoration: none; }
+.wordmark span { color: var(--beam); }
+.pill-ver { font-family: "JetBrains Mono", monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--ink-faint); background: var(--surface-lit); border: 1px solid var(--line); border-radius: var(--radius-pill); padding: 0.24rem 0.58rem; }
+
+.term { display: flex; flex-direction: column; height: clamp(17.25rem, 40vh, 23rem); overflow: hidden; }
+.term-bar { display: flex; align-items: center; gap: 0.55rem; padding: 0.8rem 1.15rem; border-bottom: 1px solid var(--line); font-family: "JetBrains Mono", monospace; font-size: 0.63rem; letter-spacing: 0.1em; color: var(--ink-faint); background: var(--surface-lit); }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ember); flex: none; }
+.term-body { flex: 1; min-height: 0; overflow: auto; background: var(--deep); font-family: "JetBrains Mono", monospace; font-size: 0.76rem; line-height: 1.5; padding: 0.85rem 1.1rem 0.95rem; color: var(--ink-dim); scrollbar-width: thin; }
+.term-body .l { display: block; white-space: pre-wrap; }
+.term-body .cmd { color: var(--beam); }
+.term-body .dim { color: var(--ink-faint); }
+.term-body .ok { color: var(--good); }
+.term-body .fin { animation: settle 0.85s var(--ease); }
+@keyframes settle { from { color: var(--ink-faint); } }
+.caret { display: inline-block; width: 0.55em; height: 1.05em; vertical-align: -0.18em; background: var(--beam); animation: blink 1.05s steps(2, start) infinite; }
+.caret.rest { animation: none; opacity: 0.35; }
+@keyframes blink { to { visibility: hidden; } }
+@media (max-width: 520px) {
+  .term-body { font-size: 0.75rem; padding: 0.9rem 0.95rem 1.1rem; }
+  .term-bar { padding: 0.7rem 1rem; }
+}
+
+.hero .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 0; gap: clamp(0.7rem, 1.4vw, 1.15rem); }
+.plat .card { padding: clamp(1rem, 1.7vh, 1.4rem) 1.2rem; gap: 0.85rem; }
+.plat h2 { font-size: 1rem; margin: 0; letter-spacing: -0.01em; }
+.card-top { display: flex; align-items: center; gap: 0.7rem; }
+.card-name { display: flex; flex-direction: column; gap: 0.06rem; min-width: 0; }
+.task { display: flex; flex-direction: column; gap: 0.28rem; padding-top: 0.85rem; border-top: 1px solid var(--line); }
+.task-label { font-family: "JetBrains Mono", monospace; font-size: 0.56rem; letter-spacing: 0.11em; color: var(--ink-faint); margin: 0; }
+.answer { font-size: 1rem; font-weight: 600; line-height: 1.3; color: var(--ink); margin: 0; }
+.detail { font-size: 0.83rem; line-height: 1.45; color: var(--ink-dim); margin: 0; }
+@media (max-width: 900px) { .hero .cards { grid-template-columns: minmax(0, 1fr); } }
+.os { font-family: "JetBrains Mono", monospace; font-size: 0.58rem; letter-spacing: 0.09em; color: var(--ink-faint); margin: 0; }
+.card.mine { background-color: var(--surface-lit); }
+.you {
+  margin-left: auto;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  color: var(--ink-dim);
+  background: var(--surface-lit);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 0.24rem 0.62rem 0.24rem 0.5rem;
+  white-space: nowrap;
+}
+.you::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--beam);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--beam) 15%, transparent);
+}
+.ico { width: 1.45rem; height: 1.45rem; flex: none; color: var(--ink-dim); fill: currentColor; }
+.sprite { display: none; }
+.btn-ico { width: 1.05rem; height: 1.05rem; flex: none; fill: currentColor; }
+
+.cmdline { display: flex; align-items: center; gap: 0.3rem; margin: 0.12rem 0 0.1rem; font-family: "JetBrains Mono", monospace; font-size: 0.64rem; color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); border: 1px solid var(--line); border-radius: var(--radius-xs); padding: 0.28rem 0.28rem 0.28rem 0.5rem; }
+.cmdline code { overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+.copy {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: calc(var(--radius-xs) - 3px);
+  background: transparent;
+  color: var(--ink-faint);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.copy:hover { background: color-mix(in srgb, var(--ink) 10%, transparent); color: var(--ink); }
+.copy.done { color: var(--good); }
+.copy svg { width: 0.9rem; height: 0.9rem; }
+.copy .yes { display: none; }
+.copy.done .yes { display: block; }
+.copy.done .no { display: none; }
+
+.switch {
+  display: flex;
+  gap: 0.15rem;
+  padding: 0.22rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  border: 1px solid var(--line);
+}
+.switch a {
+  display: block;
+  text-decoration: none;
+  color: var(--ink-faint);
+  font: 700 0.68rem/1 "JetBrains Mono", monospace;
+  letter-spacing: 0.08em;
+  padding: 0.34rem 0.66rem;
+  border-radius: var(--radius-pill);
+  transition: background 0.22s var(--ease), color 0.22s var(--ease);
+}
+.switch a:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.switch a[aria-current="page"] {
+  background: color-mix(in srgb, var(--beam) 15%, transparent);
+  color: var(--beam);
+}
+.switch a[aria-current="page"]:hover { background: color-mix(in srgb, var(--beam) 15%, transparent); color: var(--beam); }
+
+.switch::after { content: none; }
+
+.foot { flex: none; border-top: 1px solid var(--line); }
+.foot-inner { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.4rem 1.8rem; padding-block: clamp(0.7rem, 1.8vh, 1.15rem); }
+@media (max-width: 640px) {
+  .foot-inner { justify-content: center; text-align: center; gap: 0.5rem; }
+  .credit { justify-content: center; }
+}
+.foot-note { font-family: "JetBrains Mono", monospace; font-size: 0.6rem; letter-spacing: 0.09em; color: var(--ink-faint); margin: 0; }
+.credit { display: inline-flex; align-items: center; gap: 0.34rem; font-size: 0.8rem; color: var(--ink-faint); margin: 0; }
+.credit a { position: relative; color: var(--ink-dim); font-weight: 600; text-decoration: none; transition: color 0.2s var(--ease); }
+.credit a:hover { color: var(--ink); }
+.heart { width: 0.85rem; height: 0.85rem; flex: none; color: var(--heart); animation: beat 1.6s var(--ease) infinite; transform-origin: center; }
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.26); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.18); }
+  56% { transform: scale(1); }
+}
+
+.wordmark::after,
+.credit a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s var(--ease);
+}
+.wordmark:hover::after,
+.credit a:hover::after { transform: scaleX(1); }
+
+@media (min-width: 951px) and (max-height: 840px) {
+  main { padding-block: clamp(0.5rem, 1.5vh, 1.2rem); }
+  .hero { gap: clamp(1rem, 2.5vh, 1.8rem); }
+  .term { height: clamp(14.75rem, 34vh, 20rem); }
+  .term-body { font-size: 0.68rem; line-height: 1.4; padding: 0.7rem 1rem 0.7rem; }
+  .eyebrow { margin-bottom: 0.8rem; }
+  h1 { font-size: clamp(1.85rem, 1.1rem + 1.9vw, 2.5rem); }
+  .lede { font-size: 1rem; margin-top: 0.9rem; }
+  .actions { margin-top: 1.2rem; }
+  .btn { padding: 0.75rem 1.45rem; }
+  .note { margin-top: 0.75rem; font-size: 0.82rem; }
+  .answer { font-size: 0.94rem; }
+  .detail { font-size: 0.79rem; }
+}
+
+.rise { animation: rise 0.55s var(--ease) both; }
+.rise.d1 { animation-delay: 0.07s; }
+.rise.d2 { animation-delay: 0.14s; }
+.rise.d3 { animation-delay: 0.21s; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .topbar { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--surface); }
+  .ground::before, .ground::after { animation: none; opacity: 0.5; }
+}
+</style>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-windows" viewBox="0 0 16 16"><path d="M6.555 1.375 0 2.237v5.45h6.555zM0 13.795l6.555.933V8.313H0zm7.278-5.4.026 6.378L16 16V8.395zM16 0 7.33 1.244v6.414H16z"/></symbol>
+  <symbol id="i-macos" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></symbol>
+  <symbol id="i-linux" viewBox="0 0 24 24"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.043c-.06-.003-.12 0-.18 0h-.016c.151-.467-.182-.825-1.065-1.224-.915-.4-1.646-.336-1.77.465-.008.043-.013.066-.018.135-.068.023-.139.053-.209.064-.43.268-.662.669-.793 1.187-.13.533-.17 1.156-.205 1.869v.003c-.02.334-.17.838-.319 1.35-1.5 1.072-3.58 1.538-5.348.334a2.645 2.645 0 00-.402-.533 1.45 1.45 0 00-.275-.333c.182 0 .338-.03.465-.067a.615.615 0 00.314-.334c.108-.267 0-.697-.345-1.163-.345-.467-.931-.995-1.788-1.521-.63-.4-.986-.87-1.15-1.396-.165-.534-.143-1.085-.015-1.645.245-1.07.873-2.11 1.274-2.763.107-.065.037.135-.408.974-.396.751-1.14 2.497-.122 3.854a8.123 8.123 0 01.647-2.876c.564-1.278 1.743-3.504 1.836-5.268.048.036.217.135.289.202.218.133.38.333.59.465.21.201.477.335.876.335.039.003.075.006.11.006.412 0 .73-.134.997-.268.29-.134.52-.334.74-.4h.005c.467-.135.835-.402 1.044-.7zm2.185 8.958c.037.6.343 1.245.882 1.377.588.134 1.434-.333 1.791-.765l.211-.01c.315-.007.577.01.847.268l.003.003c.208.199.305.53.391.876.085.4.154.78.409 1.066.486.527.645.906.636 1.14l.003-.007v.018l-.003-.012c-.015.262-.185.396-.498.595-.63.401-1.746.712-2.457 1.57-.618.737-1.37 1.14-2.036 1.191-.664.053-1.237-.2-1.574-.898l-.005-.003c-.21-.4-.12-1.025.056-1.69.176-.668.428-1.344.463-1.897.037-.714.076-1.335.195-1.814.12-.465.308-.797.641-.984l.045-.022zm-10.814.049h.01c.053 0 .105.005.157.014.376.055.706.333 1.023.752l.91 1.664.003.003c.243.533.754 1.064 1.189 1.637.434.598.77 1.131.729 1.57v.006c-.057.744-.48 1.148-1.125 1.294-.645.135-1.52.002-2.395-.464-.968-.536-2.118-.469-2.857-.602-.369-.066-.61-.2-.723-.4-.11-.2-.113-.602.123-1.23v-.004l.002-.003c.117-.334.03-.752-.027-1.118-.055-.401-.083-.71.043-.94.16-.334.396-.4.69-.533.294-.135.64-.202.915-.47h.002v-.002c.256-.268.445-.601.668-.838.19-.201.38-.336.663-.336zm7.159-9.074c-.435.201-.945.535-1.488.535-.542 0-.97-.267-1.28-.466-.154-.134-.28-.268-.373-.335-.164-.134-.144-.333-.074-.333.109.016.129.134.199.2.096.066.215.2.36.333.292.2.68.467 1.167.467.485 0 1.053-.267 1.398-.466.195-.135.445-.334.648-.467.156-.136.149-.267.279-.267.128.016.034.134-.147.332a8.097 8.097 0 01-.69.468zm-1.082-1.583V5.64c-.006-.02.013-.042.029-.05.074-.043.18-.027.26.004.063 0 .16.067.15.135-.006.049-.085.066-.135.066-.055 0-.092-.043-.141-.068-.052-.018-.146-.008-.163-.065zm-.551 0c-.02.058-.113.049-.166.066-.047.025-.086.068-.14.068-.05 0-.13-.02-.136-.068-.01-.066.088-.133.15-.133.08-.031.184-.047.259-.005.019.009.036.03.03.05v.02h.003z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></symbol>
+</svg>
+
+<div class="ground" aria-hidden="true"></div>
+<div class="scrim" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <a class="wordmark" href="#top"><span>C</span>Forge</a>
+      <span class="pill-ver">v0.1.0</span>
+    </div>
+    <nav class="panel switch" aria-label="Dil / Language">
+      <a href="/" hreflang="tr" lang="tr" aria-current="page">TR</a>
+      <a href="/en/" hreflang="en" lang="en">EN</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="shell hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow rise" data-tr="VS Code · GCC · Otomatik kurulum" data-en="VS Code · GCC · Automated setup">VS Code · GCC · Otomatik kurulum</p>
+        <h1 class="rise d1" data-tr="Birinci sınıf için <span class=&quot;lit&quot;>eksiksiz C geliştirme ortamı.</span>" data-en="A complete C environment <span class=&quot;lit&quot;>for first-year students.</span>">Birinci sınıf için <span class="lit">eksiksiz C geliştirme ortamı.</span></h1>
+        <p class="lede rise d2" data-tr="CForge, VS Code'u, C derleyicisini ve ders için gereken yapılandırmayı tek işlemde kurar; örnek projeyi oluşturur ve sonucu derleyip çalıştırarak doğrular. Yönetici yetkisi gerektirmez." data-en="CForge installs VS Code, a C compiler and the configuration the course requires in a single operation, creates the sample project, and verifies the result by compiling and running it. No administrator rights required.">CForge, VS Code'u, C derleyicisini ve ders için gereken yapılandırmayı tek işlemde kurar; örnek projeyi oluşturur ve sonucu derleyip çalıştırarak doğrular. Yönetici yetkisi gerektirmez.</p>
+
+        <div class="actions rise d3">
+          <a class="btn" href="https://github.com/mtvrkan/cforge-releases/releases" target="_blank" rel="noopener noreferrer">
+            <svg class="btn-ico" id="dl-icon" aria-hidden="true"><use href="#i-download"/></svg>
+            <span id="dl-label" data-tr="İndir" data-en="Download">İndir</span>
+          </a>
+        </div>
+        <p class="note rise d3" data-tr="Kurulum sonunda VS Code, ilkprojem.c açık olarak başlar; F5 derler ve çalıştırır." data-en="Setup ends with VS Code open on ilkprojem.c; F5 compiles and runs it.">Kurulum sonunda VS Code, ilkprojem.c açık olarak başlar; F5 derler ve çalıştırır.</p>
+      </div>
+
+      <div class="panel term rise d2">
+        <div class="term-bar">
+          <span class="dot" aria-hidden="true"></span>
+          <span>cforge — install</span>
+        </div>
+        <div class="term-body" id="term-body" aria-hidden="true"></div>
+        <p class="sr-only" data-tr="Örnek kurulum çıktısı: VS Code kuruluyor, derleyici kuruluyor, eklentiler kuruluyor, proje hazırlanıyor, doğrulanıyor — ardından «Merhaba Dunya! Ben bilgisayar muhendisiyim.» yazdırılıyor ve kurulum tamamlanıyor." data-en="Sample install output: installing VS Code, installing the compiler, installing extensions, preparing the project, verifying — then it prints &ldquo;Merhaba Dunya! Ben bilgisayar muhendisiyim.&rdquo; and setup completes.">Örnek kurulum çıktısı: VS Code kuruluyor, derleyici kuruluyor, eklentiler kuruluyor, proje hazırlanıyor, doğrulanıyor — ardından «Merhaba Dunya! Ben bilgisayar muhendisiyim.» yazdırılıyor ve kurulum tamamlanıyor.</p>
+      </div>
+    </div>
+
+    <div class="cards plat">
+      <article class="panel card rise" data-os="windows">
+        <header class="card-top">
+          <svg class="ico" aria-hidden="true"><use href="#i-windows"/></svg>
+          <div class="card-name">
+            <h2>Windows</h2>
+            <p class="os">10/11 · x64</p>
+          </div>
+        </header>
+        <div class="task">
+          <p class="task-label" data-tr="Gereken işlem" data-en="Required step">Gereken işlem</p>
+          <p class="answer" data-tr="Yok." data-en="None.">Yok.</p>
+          <p class="detail" data-tr="Kurulum baştan sona otomatik ilerler." data-en="Setup runs unattended from start to finish.">Kurulum baştan sona otomatik ilerler.</p>
+        </div>
+      </article>
+      <article class="panel card rise d1" data-os="macos">
+        <header class="card-top">
+          <svg class="ico" aria-hidden="true"><use href="#i-macos"/></svg>
+          <div class="card-name">
+            <h2>macOS</h2>
+            <p class="os">arm64 · x64</p>
+          </div>
+        </header>
+        <div class="task">
+          <p class="task-label" data-tr="Gereken işlem" data-en="Required step">Gereken işlem</p>
+          <p class="answer" data-tr="Tek onay." data-en="One approval.">Tek onay.</p>
+          <p class="detail" data-tr="Apple'ın derleyici penceresi açılır; onaylanana kadar kurulum bekler." data-en="Apple's compiler dialog opens; setup waits until it is approved.">Apple'ın derleyici penceresi açılır; onaylanana kadar kurulum bekler.</p>
+        </div>
+      </article>
+      <article class="panel card rise d2" data-os="linux">
+        <header class="card-top">
+          <svg class="ico" aria-hidden="true"><use href="#i-linux"/></svg>
+          <div class="card-name">
+            <h2>Linux</h2>
+            <p class="os">x64 · arm64</p>
+          </div>
+        </header>
+        <div class="task">
+          <p class="task-label" data-tr="Gereken işlem" data-en="Required step">Gereken işlem</p>
+          <p class="answer" data-tr="Tek komut." data-en="One command.">Tek komut.</p>
+          <span class="cmdline"><code>sudo apt install build-essential gdb</code><button type="button" class="copy" data-copy="sudo apt install build-essential gdb" aria-label="Komutu kopyala" data-label-tr="Komutu kopyala" data-label-en="Copy command" data-done-tr="Kopyalandı" data-done-en="Copied"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H4V4h11v1"/></svg><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 13 5 5L20 6"/></svg></button><span class="sr-only" role="status" id="copy-status"></span></span>
+          <p class="detail" data-tr="apt · dnf · pacman · zypper · apk tanınır" data-en="apt · dnf · pacman · zypper · apk are recognised">apt · dnf · pacman · zypper · apk tanınır</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-inner">
+    <p class="foot-note">CForge v0.1.0 · Windows · macOS · Linux</p>
+    <p class="credit">Developed with <svg class="heart" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.1 10.55 19.8C5.4 15.16 2 12.09 2 8.3 2 5.23 4.42 2.8 7.5 2.8c1.74 0 3.41.81 4.5 2.09A6 6 0 0 1 16.5 2.8C19.58 2.8 22 5.23 22 8.3c0 3.79-3.4 6.86-8.55 11.5z"/></svg><span class="sr-only">love</span> by <a href="https://mtvrkan.com" target="_blank" rel="noopener noreferrer">mtvrkan</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var lang = document.documentElement.getAttribute("lang") === "en" ? "en" : "tr";
+
+  var LINES = {
+    tr: [
+      { t: "> cforge kurulum", c: "cmd" },
+      { t: "VS Code kuruluyor...", c: "" },
+      { t: "Derleyici kuruluyor...", c: "" },
+      { t: "  gcc 16.1.0 · gdb 17.1 · cmake", c: "dim" },
+      { t: "Eklentiler kuruluyor...", c: "" },
+      { t: "  C/C++ · Türkçe dil paketi · CMake Tools", c: "dim" },
+      { t: "Proje hazırlanıyor...", c: "" },
+      { t: "Doğrulanıyor (derle + çalıştır)...", c: "" },
+      { t: "", c: "dim" },
+
+      { t: "Merhaba Dunya! Ben bilgisayar muhendisiyim.", c: "ok" },
+      { t: "Kurulum tamamlandı.", c: "ok" }
+    ],
+    en: [
+      { t: "> cforge install", c: "cmd" },
+      { t: "Installing VS Code...", c: "" },
+      { t: "Installing compiler...", c: "" },
+      { t: "  gcc 16.1.0 · gdb 17.1 · cmake", c: "dim" },
+      { t: "Installing extensions...", c: "" },
+      { t: "  C/C++ · Turkish language pack · CMake Tools", c: "dim" },
+      { t: "Preparing your project...", c: "" },
+      { t: "Verifying (compile + run)...", c: "" },
+      { t: "", c: "dim" },
+      { t: "Merhaba Dunya! Ben bilgisayar muhendisiyim.", c: "ok" },
+      { t: "Setup complete.", c: "ok" }
+    ]
+  };
+
+  var body = document.getElementById("term-body");
+  var timers = [];
+  var runToken = 0;
+
+  function clearTimers() {
+    for (var i = 0; i < timers.length; i++) { window.clearTimeout(timers[i]); }
+    timers = [];
+  }
+
+  function lineEl(line, text) {
+    var el = document.createElement("span");
+    el.className = "l";
+    var inner = document.createElement("span");
+    if (line.c) { inner.className = line.c; }
+    inner.textContent = text;
+    el.appendChild(inner);
+    return el;
+  }
+
+  function renderTerminal() {
+    if (!body) { return; }
+
+    var token = ++runToken;
+    clearTimers();
+    var set = LINES[lang];
+    body.textContent = "";
+
+    if (reduceMotion) {
+      for (var i = 0; i < set.length; i++) { body.appendChild(lineEl(set[i], set[i].t || " ")); }
+      return;
+    }
+
+    var caret = document.createElement("span");
+    caret.className = "caret";
+    var index = 0;
+
+    function nextLine() {
+      if (token !== runToken) { return; }
+      if (index >= set.length) {
+        caret.classList.add("rest");
+        return;
+      }
+      var line = set[index];
+      var el = lineEl(line, "");
+      body.appendChild(el);
+      el.appendChild(caret);
+      var target = el.firstChild;
+      var chars = 0;
+
+      function typeChar() {
+        if (token !== runToken) { return; }
+        if (chars <= line.t.length) {
+          target.textContent = line.t.slice(0, chars) || " ";
+          chars++;
+          timers.push(window.setTimeout(typeChar, line.t.length > 40 ? 9 : 16));
+        } else {
+          if (index === set.length - 1) { target.classList.add("fin"); }
+          index++;
+          timers.push(window.setTimeout(nextLine, line.t === "" ? 60 : 180));
+        }
+      }
+      typeChar();
+    }
+    nextLine();
+  }
+
+  var copies = document.querySelectorAll(".copy");
+  var status = document.getElementById("copy-status");
+
+  for (var k = 0; k < copies.length; k++) {
+    if (!navigator.clipboard) { copies[k].parentNode.removeChild(copies[k]); continue; }
+    (function (button) {
+      button.addEventListener("click", function () {
+        navigator.clipboard.writeText(button.getAttribute("data-copy")).then(function () {
+          button.classList.add("done");
+
+          if (status) { status.textContent = button.getAttribute("data-done-" + lang); }
+          window.setTimeout(function () {
+            button.classList.remove("done");
+            if (status) { status.textContent = ""; }
+          }, 1500);
+        }, function () {});
+      });
+    })(copies[k]);
+  }
+
+  var PLATFORM = {
+    tr: { windows: "Windows için indir", macos: "macOS için indir", linux: "Linux için indir", mine: "Sisteminiz" },
+    en: { windows: "Download for Windows", macos: "Download for macOS", linux: "Download for Linux", mine: "Your system" }
+  };
+
+  function detectOS() {
+    var ua = (navigator.userAgent || "").toLowerCase();
+
+    if (/android|iphone|ipad|ipod/.test(ua)) { return null; }
+    var hint = navigator.userAgentData && navigator.userAgentData.platform;
+    var name = String(hint || navigator.platform || ua).toLowerCase();
+    if (name.indexOf("win") !== -1) { return "windows"; }
+    if (name.indexOf("mac") !== -1 || name.indexOf("darwin") !== -1) { return "macos"; }
+    if (name.indexOf("linux") !== -1 || name.indexOf("x11") !== -1) { return "linux"; }
+    return null;
+  }
+
+  var os = detectOS();
+  if (os) {
+    var words = PLATFORM[lang];
+    var label = document.getElementById("dl-label");
+
+    if (label) { label.textContent = words[os]; }
+
+    var icon = document.getElementById("dl-icon");
+    if (icon && icon.firstChild) { icon.firstChild.setAttribute("href", "#i-" + os); }
+
+    var columns = document.querySelectorAll("[data-os]");
+    for (var n = 0; n < columns.length; n++) {
+      if (columns[n].getAttribute("data-os") !== os) { continue; }
+      columns[n].classList.add("mine");
+      var head = columns[n].querySelector("header");
+      if (!head) { continue; }
+      var chip = document.createElement("span");
+      chip.className = "you";
+      chip.textContent = words.mine;
+      head.appendChild(chip);
+    }
+  }
+
+  renderTerminal();
+})();
+</script>
+</body>
+</html>
