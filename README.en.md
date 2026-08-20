@@ -36,7 +36,9 @@ your campus network blocks downloads.
 
 **Windows** — run the `.exe` you downloaded; there is nothing to install.
 It may take a few seconds to open the first time.
-If Windows warns about an unknown publisher: *More info* → *Run anyway*.
+**If you see "Windows protected your PC"**, that is expected: CForge is not a
+signed application, and Windows shows this for every program it does not
+recognise. Click **More info** → **Run anyway**.
 
 **macOS** — extract the `.zip`, then **right-click → Open** on `CForge.app`
 (macOS blocks a double-click on first launch).

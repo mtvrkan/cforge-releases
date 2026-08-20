@@ -36,7 +36,9 @@ indirmeleri engelliyorsa bunu kullan.
 
 **Windows** — indirdiğin `.exe`'yi çalıştır, kurulacak bir şey yok.
 İlk açılışta birkaç saniye bekleyebilir.
-Windows "bilinmeyen yayıncı" uyarısı verirse: *Ek bilgi* → *Yine de çalıştır*.
+**"Windows kişisel bilgisayarınızı korudu" uyarısı çıkarsa** bu normaldir: CForge
+imzalı bir uygulama değil, Windows da tanımadığı her programa aynı uyarıyı verir.
+Mavi pencerede **Daha fazla bilgi** → **Yine de çalıştır**.
 
 **macOS** — `.zip`'i çıkar, `CForge.app`'i **sağ tık → Aç** ile başlat (ilk
 açılışta çift tıklama macOS tarafından engellenir).
